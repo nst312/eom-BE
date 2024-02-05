@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+        }
+
+        .container {
+            padding: 20px 0;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .section-header {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: space-between; /* wkhtmltopdf uses this one */
+            -webkit-justify-content: space-between;
+            justify-content:space-between;
+        }
+
+        .section-header div:first-child{
+            width: 50%;
+        }
+
+        .section-header .desp{
+            /*width: auto;*/
+            /*padding-left: 200px;*/
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .table1{
+            /* margin: 20px 0; */
+        }
+
+        .table1 td{
+            padding: 10px;
+        }
+
+        .table1 td:first-child{
+            padding-left: 0;
+        }
+
+        .table2{
+            width: 100%;
+            border-top: 4px solid #FF6231;
+            border-bottom: 4px solid #FF6231;
+            margin: 30px 0;
+            padding: 20px 0;
+        }
+
+        .table2 td:first-child{
+            width: 40%;
+        }
+
+        .table2 td{
+            width: 20%;
+            padding: 4px;
+        }
+
+        .table2 tr:first-child{
+            font-weight: 800;
+            color: #FF6231;
+        }
+
+        .subTotal-section{
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: flex-end; /* wkhtmltopdf uses this one */
+            -webkit-justify-content: flex-end;
+            justify-content: flex-end;
+        }
+
+        .table3{
+            border-collapse: collapse;
+        }
+
+        .table3 tr{
+        }
+
+        .table3 td{
+            padding: 10px 0;
+            border-bottom: 2px solid #FF6231;
+        }
+
+        .table3 td:first-child{
+            padding-right: 40px;
+        }
+
+        .footer span{
+            color: #FF6231;
+        }
+
+        h1{
+            color: #FF6231;
+        }
+
+        footer{
+            border-top: 2px solid #FF6231;
+            padding-top: 20px;
+            margin-top: 50px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center; /* wkhtmltopdf uses this one */
+            -webkit-justify-content: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-box{
+            width: 50%;
+            padding: 10px;
+        }
+
+        footer .footer-box:first-child{
+            text-align: right;
+        }
+
+        footer h2{
+            color: #FF6231;
+        }
+
+        p{
+            word-break: break-all;
+            white-space: normal;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="section-header">
+        <img src={{companyLogoPathUrl}} width="100px"  />
+        <div class="desp">
+            <p>
+                {{companyName}}</p>
+
+            <p>
+                {{companyEmail}}
+            </p>
+            <p>
+                {{companyWebsite}}
+            </p>
+            <p>
+                GSTIN:-{{gstIn}}
+            </p>
+        </div>
+    </div>
+    <div class="section-header">
+        <img   alt="">
+        <div class="desp">
+            <p>
+                {{clientName}}, Paryush
+            </p>
+            <p>
+                {{clintAddresses1}}
+            </p>
+            <p>
+                {{clintAddresses2}}
+            </p>
+            <p>
+                {{clintCity}}
+            </p>
+            <p>
+                {{clintState}}
+            </p>
+            <p>
+                GSTIN:-{{clientGST}}
+            </p>
+        </div>
+    </div>
+    <h1>{{invoiceNumber}}</h1>
+    <table class="table1">
+        <tr>
+            <td>Invoice Date:</td>
+            <td>Due Date:</td>
+        </tr>
+        <tr>
+            <td>{{invoiceDate}}
+            </td>
+            <td>{{dueDate}}
+            </td>
+
+        </tr>
+    </table>
+
+    <table class="table2">
+        <tr>
+            <td>DESCRIPTION</td>
+            <td>HSN</td>
+            <td>QUANTITY</td>
+            <td>UNIT PRICE</td>
+            <td>AMOUNT</td>
+        </tr>
+        {{#each items}}
+        <tr>
+            <td>
+               {{this.name}}
+            </td>
+            <td>
+                {{this.hsnCode}}
+            </td>
+            <td>
+                {{this.qty}}
+            </td>
+            <td>{{this.rate}} </td>
+            <td>{{this.total}} ₹</td>
+        </tr>
+        {{/each}}
+    </table>
+
+    <div class="subTotal-section">
+        <div class="subTotal-box">
+            <table class="table3">
+
+                <tr>
+                    <td>Discount</td>
+                    <td>{{discount}}</td>
+                </tr>
+                <tr>
+                    <td>Cgst</td>
+                    <td>{{cgst}}</td>
+                </tr>
+                <tr>
+                    <td>Sgst</td>
+                    <td>{{sgst}}</td>
+                </tr>
+                <tr>
+                    <td>Igst</td>
+                    <td>{{igst}}</td>
+                </tr>
+                <tr>
+                    <td>Total Tax</td>
+                    <td>{{taxTotal}}</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>{{grandTotal}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Please use the following communication for your payment : {{invoiceNumber}}
+        </p>
+        <p> <span>Total (In Words):</span> {{netPayWord}} Rupee</p>
+        <p>Payment terms: Immediate Payment</p>
+    </div>
+    <footer>
+        <div class="footer-box">
+            <p>{{street1}},
+                {{street2}},
+                {{city}},
+                {{state}},
+                {{country}},
+            </p>
+        </div>
+        <div class="footer-box">
+            <h2>{{tagLine}}</h2>
+        </div>
+    </footer>
+</div>
+</body>
+
+</html>

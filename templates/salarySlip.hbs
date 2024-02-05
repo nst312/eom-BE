@@ -1,0 +1,501 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{{name}}'s Salary Slip</title>
+  <meta name="author" content="Ghanshyam Digital LLP" />
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      text-indent: 0;
+    }
+
+    .companyNameTitle {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 18pt;
+      justify-content: center;
+    }
+
+    .companySlogan {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: italic;
+      text-decoration: none;
+      font-size: 10pt;
+      justify-content: flex-end;
+    }
+
+    .s1 {
+      color: black;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+      font-size: 25pt;
+    }
+
+    .s2 {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 9pt;
+    }
+
+    .s3 {
+      color: black;
+      font-family: Arial, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: none;
+      font-size: 9pt;
+    }
+
+    .detailsTitle {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 11pt;
+    }
+
+    .detailsTitle2 {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 10pt;
+    }
+
+    .salaryFromTitle {
+      color: black;
+      font-family: Arial Bold, sans-serif;
+      font-style: normal;
+      text-decoration: none;
+      font-size: 12pt;
+    }
+
+    table,
+    tbody {
+      vertical-align: top;
+      overflow: visible;
+    }
+
+    table {
+      margin: auto;
+      display: flex;
+      border-collapse: collapse;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+<table style="border-collapse:collapse; margin-top: 15pt;  height: 100vh;" cellspacing="0">
+  <tr style="height:60pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <!--            <p style="text-indent: 0pt;text-align: left;"><br /></p>-->
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><img src={{company_logo}} width="80" height="80" />
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td style="width:401pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="3">
+      <p class="companyNameTitle"
+         style="text-indent: 0pt;text-align: center;display: flex;align-items: center;margin-top: 15pt;">
+        <b>{{company_name}}</b>
+      </p>
+      <p class="companySlogan"
+         style="text-indent: 0pt;text-align: center;display: flex;align-items: center;margin-bottom: 15pt;">
+        <b>{{ companyTagLine }}</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:23pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p class="salaryFromTitle"
+         style="padding-top: 4pt;padding-left: 93pt;padding-right: 119pt;text-indent: 0pt;text-align: center;">
+        <b>Salary Slip {{currentMonth}} {{currentYear}}</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:8pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Emp Code: {{empCode}}
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Name: {{name}}
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3"
+         style="padding-top: 4pt;padding-left: 3pt;padding-right: 4pt;text-indent: 5pt;line-height: 108%;text-align: left;">
+        Type: {{type}}
+      </p>
+    </td>
+
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Designation: {{designation}}
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Date of Joining: {{joinDate}}
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Department: {{department}}.
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        UAN Number: N.A.
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Present Days: {{attendance}}.
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Absent Days: {{unPaidLeave}}.
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Total Days Of Month: .
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Total Arrears: N.A.
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+          Bank: {{bankName}}
+      </p>
+    </td>
+
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+          Acc No: {{accNum}}
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        IFSC : {{IFSC}}
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s3" style="padding-top: 4pt;padding-left: 9pt;text-indent: 0pt;text-align: left;">
+        PAN Number: {{panNum}}
+      </p>
+    </td>
+  </tr>
+  <tr style="height:8pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="detailsTitle"
+         style="padding-top: 3pt;padding-left: 90pt;padding-right: 90pt;text-indent: 0pt;text-align: center;font-size: 11pt;">
+        <b>Earnings</b>
+      </p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="detailsTitle"
+         style="padding-top: 3pt;padding-left: 90pt;padding-right: 90pt;text-indent: 0pt;text-align: center;font-size: 11pt;">
+        <b>Deductions</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="detailsTitle2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+        <b>Components</b>
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="detailsTitle2"
+         style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        <b>Amount (Rs.)</b>
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="detailsTitle2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+        <b>Common Deductions</b>
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="detailsTitle2"
+         style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        <b>Amount (Rs.)</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Basic</p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">{{basic}}
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Professional Tax
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        {{professionalTax}}</p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">HRA</p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">{{hra}}
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">TDS ( % )
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">{{tds}}
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Conveyance
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        {{conveyance}}</p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;">Leaves
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;"><br />{{leaveAmount}}</p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Medical</p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        {{medical}}</p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        Special Allowance
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s3" style="padding-top: 4pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        {{specialAllowance}}</p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2" style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        <b>Gross Earning (A)</b>
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2" style="padding-top: 3pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        <b>{{gross}}</b>
+      </p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2" style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        <b>Total Deductions (B)</b>
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2" style="padding-top: 3pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        <b>{{totalDeduction}}</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:8pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+    <td
+      style="width:133pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2"
+         style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+        <b>Net Pay (A - B)</b>
+      </p>
+    </td>
+    <td
+      style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999">
+      <p class="s2"
+         style="padding-top: 3pt;padding-right: 7pt;text-indent: 0pt;text-align: right;">
+        <b>{{netPay}}</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:134pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+    <td style="width:267pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="2">
+      <p class="s2"
+         style="padding-top: 4pt;padding-left: 10pt;text-indent: 0pt;text-align: left; text-transform: capitalize;">
+        <b>In Words : {{netPayWord}} rupees only.</b>
+      </p>
+    </td>
+  </tr>
+  <tr style="height:8pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    </td>
+  </tr>
+  <tr style="height:19pt">
+    <td style="width:534pt;border-top-style:solid;border-top-width:1pt;border-top-color:#999999;border-left-style:solid;border-left-width:1pt;border-left-color:#999999;border-bottom-style:solid;border-bottom-width:1pt;border-bottom-color:#999999;border-right-style:solid;border-right-width:1pt;border-right-color:#999999"
+        colspan="4">
+      <p class="s2"
+         style="padding-top: 4pt;text-indent: 0pt;text-align: center;">
+        <b>
+          Note: <span class="s3">This is a Computer Generated Salary History and does not require signature.</span>
+        </b>
+      </p>
+    </td>
+  </tr>
+</table>
+</body>
+
+</html>

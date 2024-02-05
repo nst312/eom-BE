@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flex-column-align-center {
+      display: -webkit-box;
+      display: flex;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-box-pack: justify;
+    }
+
+    .flex-row {
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .flex-row-between {
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .flex-row-justify-center {
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-pack: center;
+      justify-content: center;
+    }
+
+    .flex-row-align-center {
+      display: -webkit-box;
+      display: flex;
+      flex-direction: row;
+      -webkit-box-align: center;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div style="width:100%; height:100%;">
+    <div class="flex-column" style="width: 100%; height: 100%; text-align: center; justify-content: space-around;">
+      <div style="height: 90%; background-color: #fff; border-radius: 6px; align-self: center; width: 100%; overflow: hidden; 
+        filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));">
+        <div>
+          <div style="height: 100%">
+            <div class="flex-column" style="
+                  width: 100%;
+                  padding-top: 14px;
+                  background: linear-gradient(
+                      to right,
+                      rgb(51, 51, 51) 40%,
+                      rgb(255, 255, 255) 33%,
+                      rgb(255, 255, 255) 50%
+                    );
+                  ">
+              <div class="flex-row-justify-center"
+                style="margin-left: 30px; background-color: #99c7c7; border: 8px solid #fff; min-height: 64px; height: 100%;">
+                {{#if personalDetails.photo}}
+                <div class="flex-column-align-center" style="padding-left: 26px;">
+                  <img src={{photoURL}}{{personalDetails.photo}}
+                    style="width: 96px; height: 96px; border-radius: 100%; border: 3px solid #fff;" alt="profile" />
+                </div>
+                {{/if}}
+                <div
+                  style="align-self: center; text-align: start; margin-left: 20px; width: 100%; padding-top: 5px; padding-bottom: 5px;">
+                  {{#if personalDetails.firstName}}
+                  <div style="display: flex;">
+                    <h2 style="font: bold; color: #fff; word-break: break-all; margin: 0px;">
+                      {{personalDetails.firstName}}
+                      {{personalDetails.lastName}}
+                    </h2>
+                  </div>
+                  {{/if}}
+                  {{#if personalDetails.headline}}
+                  <div style="display: flex; margin-top: 2px; margin-left: 5px;">
+                    <div style="color: #fff; word-break: break-all;">
+                      {{personalDetails.headline}}
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{#if personalDetails.email}}
+                  <div class="flex-row-align-center"
+                    style="margin-top: 2px; margin-left: 5px; overflow: hidden; align-items: center;">
+                    <i class="fa fa-envelope" aria-hidden="true"
+                      style="font-size: 12px; color: #fff; margin-right: 5px;"></i>
+                    <div style="font: bold; color: #fff; word-break: break-all;">
+                      {{personalDetails.email}}
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{#if personalDetails.phone}}
+                  <div class="flex-row-align-center"
+                    style="margin-top: 2px; margin-left: 5px; overflow: hidden; align-items: center;">
+                    <i class="fa fa-phone" aria-hidden="true"
+                      style="font-size: 12px; color: #fff; margin-right: 5px;"></i>
+                    <div style="font-size: 14px; color: #fff; word-break: break-all;">
+                      {{personalDetails.phone}}
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{#if personalDetails.address}}
+                  <div class="flex-row-align-center"
+                    style="margin-top: 2px; margin-left: 5px; overflow: hidden; align-items: center;">
+                    <i class="fa fa-home" aria-hidden="true"
+                      style="font-size: 12px; color: #fff; margin-right: 5px;"></i>
+                    <div style="font-size: 14px; color: #fff; word-break: break-all;">
+                      {{personalDetails.address}},
+                      {{personalDetails.postCode}}, {{personalDetails.city}}.
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{#if dob}}
+                  <div class="flex-row-align-center"
+                    style="margin-top: 2px; margin-left: 5px; overflow: hidden; align-items: center;">
+                    <i class="fa fa-calendar" aria-hidden="true"
+                      style="font-size: 12px; color: #fff; margin-right: 5px;"></i>
+                    <div style="font-size: 14px; color: #fff; word-break: break-all;">
+                      {{dob}}
+                    </div>
+                  </div>
+                  {{/if}}
+                  {{#if personalDetails.placeBirth}}
+                  <div class="flex-row-align-center"
+                    style="margin-top: 2px; margin-left: 5px; overflow: hidden; align-items: center; margin-bottom: 5px;">
+                    <i class="fa fa-map-marker" aria-hidden="true"
+                      style="font-size: 12px; color: #fff; margin-right: 5px;"></i>
+                    <div style="font-size: 14px; color: #fff; word-break: break-all;">
+                      {{personalDetails.placeBirth}}
+                    </div>
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="flex-row" style="display: flex; height: 100%; width: 100%;">
+                <div style="width: 33.333333%; padding-left: 32px; padding-right: 8px; 
+                background-color: #333;
+                ">
+                  {{#if languages.length}}
+                  <div style="text-align: left;">
+                    <div
+                      style="font-size: 16px; line-height: 24px; color: #99c7c7; display: flex; padding-top: 20px; margin-bottom: 2px; overflow: hidden;">
+                      LANGUAGES
+                    </div>
+                    {{#each languages}}
+                    <div style="text-align: left;">
+                      <div
+                        style="color: #ccc; font-size: 14px; line-height: 16px; margin-top: 4px; word-break: break-all;">
+                        {{name}}:
+                      </div>
+                      <div
+                        style="width: 100%; background-color: #fff; height: 5px; margin-bottom: 10px; margin-top: 10px;">
+                        <div style="background-color: #99c7c7; height: 5px; width: {{level}}%" ;>
+                        </div>
+                      </div>
+                    </div>
+                    {{/each }}
+                  </div>
+                  {{/if}}
+                  {{#if skills.length}}
+                  <div style="text-align: left;">
+                    <div
+                      style="font-size: 16px; line-height: 24px; color: #99c7c7; display: flex; padding-top: 4px; margin-bottom: 8px; overflow: hidden;">
+                      SKILLS
+                    </div>
+                    {{#each skills}}
+                    <div style="text-align: left;">
+                      <div
+                        style="color: #ccc; font-size: 14px; line-height: 16px; margin-top: 4px; word-break: break-all;">
+                        {{name}}
+                      </div>
+                      <div
+                        style="width: 100%; background-color: #fff; height: 5px; margin-bottom: 10px; margin-top: 10px;">
+                        <div style="background-color: #99c7c7; height: 5px; width: {{level}}%" ;>
+                        </div>
+                      </div>
+                    </div>
+                    {{/each }}
+                  </div>
+                  {{/if}}
+                  {{#if hobbies.length}}
+                  <div style="text-align: left;">
+                    <div style="font-size: 16px; line-height: 24px; color: #99c7c7; display: flex; padding-top: 4px;">
+                      HOBBIES
+                    </div>
+                    {{#each hobbies}}
+                    <div style="text-align: left;">
+                      <ul style="text-align: left; margin-top: 4px; list-style-type: square; color: #ccc">
+                        <li style="font-size: 14px; line-height: 16px; text-align: left; word-break: break-all;">
+                          {{hobby}}
+                        </li>
+                      </ul>
+                    </div>
+                    {{/each}}
+                  </div>
+                  {{/if}}
+                </div>
+                <div style="width: 66.666667%; margin-bottom: 20px;">
+                  <div style="margin-left: 10px; margin-right: 48px; margin-top: 40px; margin-bottom: 16px;">
+                    {{#if profiles.description}}
+                    <div>
+                      <div
+                        style="margin-bottom: 15px; padding: 8px; font-size: 16px; line-height: 24px; text-align: left; color: #fff; background-color: #99c7c7; overflow: hidden;">
+                        PROFILE
+                      </div>
+                      <div
+                        style="margin-top: 4px; word-break: break-all; font-size: 12px; line-height: 16px; font-weight: lighter; text-align: justify; margin-top: 4px;">
+                        {{profiles.description}}
+                      </div>
+                    </div>
+                    {{/if}}
+                    {{#if employments.length}}
+                    <div style="margin-top: 20px;">
+                      <div
+                        style="margin-bottom: 15px; padding: 8px; font-size: 16px; line-height: 24px; text-align: left; color: #fff; background-color: #99c7c7; margin-top: 4px; overflow: hidden;">
+                        Employments
+                      </div>
+                      {{#each employments}}
+                      <div>
+                        <div class="flex-row-between">
+                          <div
+                            style="font-size: 12px; line-height: 16px; font-weight: bold; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{position}}
+                          </div>
+                          <div
+                            style="font-size: 10px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{startMonth}} {{startYear}} - {{endMonth}} {{endYear}}
+                          </div>
+                        </div>
+                        <div
+                          style="font-size: 12px; line-height: 16px; text-align: start; font-weight: 500; color: #6b7280; padding-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                          {{employer}}, {{city}}
+                        </div>
+                        <div style="display: flex; text-align: justify;">
+                          <div
+                            style="margin-top: 4px; text-align: start; font-size: 12px; line-height: 16px; text-align: justify; word-break: break-all;">
+                            {{description}}
+                          </div>
+                        </div>
+                      </div>
+                      {{/each}}
+                    </div>
+                    {{/if}}
+                    {{#if educations.length}}
+                    <div style="margin-top: 20px;">
+                      <div
+                        style="margin-bottom: 15px; padding: 8px; font-size: 16px; line-height: 24px; text-align: left; color: #fff; background-color: #99c7c7; margin-top: 4px;">
+                        EDUCATION
+                      </div>
+                      {{#each educations}}
+                      <div>
+                        <div class="flex-row-between">
+                          <div
+                            style="font-size: 12px; line-height: 16px; font-weight: bold; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{education}}
+                          </div>
+                          <div
+                            style="font-size: 12px; line-height: 16px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{startMonth}} {{startYear}} - {{endMonth}} {{endYear}}
+                          </div>
+                        </div>
+                        <div
+                          style="font-size: 12px; line-height: 16px; text-align: start; font-weight: 500; color: #6b7280; padding-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                          {{school}}, {{city}}
+                        </div>
+                        <div
+                          style="margin-top: 4px; text-align: start; word-break: break-all; font-size: 12px; line-height: 16px;">
+                          {{description}}
+                        </div>
+                      </div>
+                      {{/each}}
+                    </div>
+                    {{/if}}
+                    {{#if certificates.length}}
+                    <div style="margin-top: 20px;">
+                      <div
+                        style="margin-bottom: 15px; padding: 8px; font-size: 16px; line-height: 24px; text-align: left; color: #fff; background-color: #99c7c7; margin-top: 4px; overflow: hidden;">
+                        CERTIFICATES
+                      </div>
+                      {{#each certificates}}
+                      <div>
+                        <div class="flex-row-between">
+                          <div
+                            style="font-size: 12px; line-height: 16px; font-weight: bold; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{certificate}}
+                          </div>
+                          <div
+                            style="font-size: 12px; line-height: 16px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{month}} {{year}}
+                          </div>
+                        </div>
+                        <div
+                          style="margin-top: 4px; text-align: start; word-break: break-all; font-size: 12px; line-height: 16px;">
+                          {{description}}
+                        </div>
+                      </div>
+                      {{/each}}
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

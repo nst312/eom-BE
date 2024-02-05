@@ -1,0 +1,777 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+model role_permission {
+    id                  Int             @id @default(autoincrement())
+    module              String
+    label               String
+    role                String
+    permission          String
+    isPermission        Boolean         @default(true)
+}
+model users {
+  id            Int             @id @default(autoincrement())
+  firstName     String
+  middleName    String?
+  lastName      String
+  email         String          @unique
+  token         String?
+  displayName   String
+  avatar_url    String?
+  password      String
+  role          Role            @default(EMPLOYEE)
+  totalRating   Float           @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  deletedAt     DateTime?
+  posts         posts[]
+  postsAccepted post_accepts[]
+  postsRating   post_ratings[]
+  companies     companies[]
+  invitations   invitations[]
+  employees     employees?
+  addresses     addresses[]
+  leave_history leave_history[]
+  document      document[]
+  course        course[]
+  works         works[]
+  expense       expense[]
+}
+model posts {
+  id            Int            @id @default(autoincrement())
+  createdBy     users          @relation(fields: [createById], references: [id])
+  createById    Int
+  title         String?
+  description   String?
+  status        Status         @default(OPEN)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @default(now()) @updatedAt
+  deletedAt     DateTime?
+  postsAccepted post_accepts[]
+  postsRating   post_ratings[]
+  companies     companies[]
+}
+model post_accepts {
+  id         Int       @id @default(autoincrement())
+  acceptBy   users     @relation(fields: [userId], references: [id])
+  userId     Int
+  acceptPost posts     @relation(fields: [postId], references: [id])
+  postId     Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  deletedAt  DateTime?
+}
+model post_ratings {
+  id         Int       @id @default(autoincrement())
+  ratingPost posts     @relation(fields: [postId], references: [id])
+  postId     Int
+  ratingBy   users     @relation(fields: [userId], references: [id])
+  userId     Int
+  rating     Float
+  feedback   String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  deletedAt  DateTime?
+}
+model companies {
+  id               Int                   @id @default(autoincrement())
+  company_name     String
+  phone            String?
+  email            String?
+  website          String?
+  gstin            String?
+  company_registry String?
+  working_hour     Float?
+  company_logo     String?
+  tag_line         String?
+  addresses        addresses[]
+  users            users[]
+  departments      company_departments[]
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @default(now()) @updatedAt
+  deletedAt        DateTime?
+  invitations      invitations[]
+  posts            posts[]
+  clients          clients[]
+  announcements    post_announcement[]
+  company_policy   company_policy[]
+  expense_category expense_category[]
+  expense          expense[]
+  leave_rules      leave_rules[]
+  employeeManager  employeeManager[]
+  attendance        attendance[]
+  attendanceRules     attendanceRules[]
+}
+model company_departments {
+  id              Int            @id @default(autoincrement())
+  department_name String
+  companies       companies      @relation(fields: [company_id], references: [id])
+  company_id      Int
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now()) @updatedAt
+  deletedAt       DateTime?
+  job_position    job_position[]
+}
+model addresses {
+  id         Int         @id @default(autoincrement())
+  name       String?
+  street1    String?
+  street2    String?
+  city       String?
+  city_id    Int?
+  state      String?
+  state_id   Int?
+  zip        Int?
+  country    String?
+  country_id Int?
+  employees  employees[]
+  users      users[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now()) @updatedAt
+  deletedAt  DateTime?
+  companies  companies[]
+  clients    clients[]
+}
+model department_master {
+  id              Int       @id @default(autoincrement())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @default(now()) @updatedAt
+  deletedAt       DateTime?
+  department_name String
+}
+model employees {
+  id              Int              @id @default(autoincrement())
+  users           users            @relation(fields: [userId], references: [id])
+  userId          Int              @unique
+  employee_code   String?
+  personal_email  String?          @unique
+  work_email      String?          @unique
+  phone           String?
+  phone2          String?
+  birth_date      DateTime?
+  joining_date    DateTime?
+  resume          String?
+  empType         Emp_Type         @default(INTERN)
+  addresses       addresses[]
+  jobPosition     job_position?    @relation(fields: [jobPositionId], references: [id])
+  jobPositionId   Int?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @default(now()) @updatedAt
+  deletedAt       DateTime?
+  invitations     invitations[]
+  salaries        salaries[]
+  leaves          leaves[]
+  bank_details    bank_details[]
+  resumes         resumes[]
+  dynamicLeave    dynamic_leave[]
+  salary_history  salary_history[]
+  document        document[]
+  course          course[]
+  works           works[]
+  employeeData    employeeManager[]  @relation("employeeData")
+  managerData     employeeManager[]   @relation("managerData")
+  aasignLeaveRule aasignLeaveRule[]
+  attendanceRules  attendanceRules[]
+}
+model invitations {
+  id         Int         @id @default(autoincrement())
+  firstName  String
+  lastName   String
+  employees  employees[]
+  users      users[]
+  email      String
+  token      String      @unique
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now()) @updatedAt
+  deletedAt  DateTime?
+  companies  companies   @relation(fields: [company_id], references: [id])
+  company_id Int
+}
+
+model salaries {
+  id               Int              @id @default(autoincrement())
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @default(now()) @updatedAt
+  deletedAt        DateTime?
+  hra              Float?
+  specialAllowance Float?
+  basic            Float
+  conveyance       Float?
+  medical          Float?
+  gross            Float?
+  professionalTax  Float?
+  tds              Float?
+  month             String          @default("january")
+  leave             Float           @default(0)
+  employees        employees        @relation(fields: [employee_id], references: [id])
+  employee_id      Int
+  salary_history   salary_history[]
+}
+model cities {
+  id           Int       @id @default(autoincrement())
+  name         String
+  state_id     Int
+  state_code   String
+  state_name   String
+  country_id   Int
+  country_code String
+  country_name String
+  latitude     String?
+  longitude    String?
+  wikiDataId   String?
+  country      countries @relation(fields: [country_id], references: [id])
+  state        states    @relation(fields: [state_id], references: [id])
+}
+model states {
+  id           Int       @id @default(autoincrement())
+  name         String
+  country_id   Int
+  country_code String
+  country_name String
+  state_code   String
+  type         String?
+  latitude     String?
+  longitude    String?
+  country      countries @relation(fields: [country_id], references: [id])
+  cities       cities[]
+}
+model countries {
+  id              Int        @id @default(autoincrement())
+  name            String
+  iso3            String?
+  iso2            String?
+  numeric_code    String?
+  phone_code      String?
+  capital         String?
+  currency        String?
+  currency_name   String?
+  currency_symbol String?
+  tld             String?
+  native          String?
+  region          String?
+  subregion       String?
+  timezones       timezone[]
+  latitude        String?
+  longitude       String?
+  emoji           String?
+  emojiU          String?
+  cities          cities[]
+  states          states[]
+}
+model timezone {
+  id            Int         @id @default(autoincrement())
+  zoneName      String
+  gmtOffset     Int
+  gmtOffsetName String
+  abbreviation  String
+  tzName        String
+  countries     countries[]
+}
+model job_position {
+  id                  Int                  @id @default(autoincrement())
+  jobPosition         String
+  company_department  company_departments? @relation(fields: [companyDepartmentId], references: [id])
+  companyDepartmentId Int?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @default(now()) @updatedAt
+  deletedAt           DateTime?
+  employees           employees[]
+}
+model leaves {
+  id            Int             @id @default(autoincrement())
+  leaveType     Leave_Type
+  start         DateTime
+  end           DateTime
+  durationCount Int
+  description   String
+  reason        String
+  employees     employees       @relation(fields: [employeeId], references: [id])
+  employeeId    Int
+  status        Leave_Status    @default(APPLIED)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now()) @updatedAt
+  deletedAt     DateTime?
+  leave_history leave_history[]
+}
+model dynamic_leave {
+  id          Int       @id @default(autoincrement())
+  employees   employees @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  paidLeave   Int
+  sickLeave   Int
+  unPaidLeave Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  deletedAt   DateTime?
+}
+model leave_history {
+  id        Int      @id @default(autoincrement())
+  leaves    leaves   @relation(fields: [leaveId], references: [id])
+  leaveId   Int
+  users     users    @relation(fields: [userId], references: [id])
+  userId    Int
+  reason    String
+  status    String
+  createdAt DateTime @default(now())
+}
+model bank_details {
+  id            Int        @id @default(autoincrement())
+  bankName       String
+  accountTitle   String?
+  accountNumber String
+  ifsc          String
+  branch        String
+  city          String
+  accountType   Account_Type
+  employees     employees? @relation(fields: [employeeId], references: [id])
+  employeeId    Int
+  createdAt     DateTime?  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+}
+model clients {
+  id             Int         @id @default(autoincrement())
+  client_name    String
+  client_type    Client_Type @default(COMPANY)
+  contact_number String?
+  website        String?
+  gstin          String?
+  avatar_url     String?
+  work_email     String      @unique
+  address        addresses[]
+  companies      companies[]
+  invoices       invoices[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @default(now()) @updatedAt
+  deletedAt      DateTime?
+}
+model resumes {
+  id              Int              @id @default(autoincrement())
+  employees       employees        @relation(fields: [employee_id], references: [id])
+  employee_id     Int
+  themeCode       Int
+  themeImage      String?
+  personalDetails personalDetails?
+  profiles        profiles?
+  educations      educations[]
+  employments     employments[]
+  skills          skills[]
+  languages       languages[]
+  hobbies         hobbies[]
+  certificates    certificates[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @default(now()) @updatedAt
+  deletedAt       DateTime?
+}
+model personalDetails {
+  id         Int       @id @default(autoincrement())
+  photo      String?
+  firstName  String
+  lastName   String
+  headline   String?
+  email      String?
+  address    String?
+  phone      String?
+  postCode   String?
+  city       String?
+  dob        DateTime?
+  placeBirth String?
+  resumes    resumes   @relation(fields: [resumeId], references: [id])
+  resumeId   Int       @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+}
+model educations {
+  id          Int      @id @default(autoincrement())
+  education   String?
+  school      String?
+  city        String?
+  startMonth  String?
+  startYear   String?
+  endMonth    String?
+  endYear     String?
+  description String?
+  resumes     resumes? @relation(fields: [resumeId], references: [id])
+  resumeId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+model employments {
+  id          Int      @id @default(autoincrement())
+  position    String?
+  employer    String?
+  city        String?
+  startMonth  String?
+  startYear   String?
+  endMonth    String?
+  endYear     String?
+  description String?
+  resumes     resumes? @relation(fields: [resumeId], references: [id])
+  resumeId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+model skills {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  level     Int?     @default(0)
+  resumes   resumes? @relation(fields: [resumeId], references: [id])
+  resumeId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+model languages {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  level     Int?     @default(0)
+  resumes   resumes? @relation(fields: [resumeId], references: [id])
+  resumeId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+model hobbies {
+  id        Int      @id @default(autoincrement())
+  hobby     String?
+  resumes   resumes? @relation(fields: [resumeId], references: [id])
+  resumeId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+model certificates {
+  id          Int      @id @default(autoincrement())
+  certificate String?
+  month       String?
+  year        String?
+  description String?
+  resumes     resumes? @relation(fields: [resumeId], references: [id])
+  resumeId    Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+model profiles {
+  id          Int      @id @default(autoincrement())
+  description String?
+  resumes     resumes? @relation(fields: [resumeId], references: [id])
+  resumeId    Int?     @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+enum Client_Type {
+  INDIVIDUAL
+  COMPANY
+}
+model invoices {
+  id                  Int             @id @default(autoincrement())
+  invoiceNumber       String          @unique
+  invoiceNumberPrefix Int             @default(autoincrement())
+  clients             clients         @relation(fields: [clientId], references: [id])
+  clientId            Int
+  invoiceItems        invoice_items[]
+  invoiceDate         DateTime
+  dueDate             DateTime
+  note                String?
+  currency            String?
+  discount            Float?          @default(0)
+  discountAmount      Int?            @default(0)
+  discountTotal       Decimal?        @default(0)
+  cgst                Float?          @default(0)
+  sgst                Float?          @default(0)
+  igst                Float?          @default(0)
+  taxTotal            Decimal?        @default(0)
+  grandTotal          Decimal         @default(0)
+  status              Invoice_Status  @default(DRAFT)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @default(now()) @updatedAt
+  deletedAt           DateTime?
+}
+model invoice_items {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  qty         Int
+  rate        Int
+  total       Int
+  hsnCode     Int
+  invoice     invoices @relation(fields: [invoiceId], references: [id])
+  invoiceId   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+}
+model works {
+  id           Int       @id @default(autoincrement())
+  title        String
+  description  String
+  path         String?
+  employees    employees @relation(fields: [employeeId], references: [id])
+  employeeId   Int
+  uploadedBy   users     @relation(fields: [uploadedById], references: [id])
+  uploadedById Int
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now()) @updatedAt
+  deletedAt    DateTime?
+}
+model salary_history {
+  id               Int       @id @default(autoincrement())
+  employees        employees @relation(fields: [employeeId], references: [id])
+  employeeId       Int
+  salaries         salaries  @relation(fields: [salaryId], references: [id])
+  salaryId         Int
+  empCode          String?
+  name             String?
+  company_logo     String?
+  currentMonth     String?
+  tag_line         String?
+  company_name     String?
+  currentYear      String?
+  netPayWord       String?
+  type             String?
+  designation      String?
+  department       String?
+  PFNumber         Int?
+  UANNumber        Int?
+  ESICNumber       Int?
+  bankName         String?
+  IFSC             String?
+  totalDaysOfMonth Float?
+  joinDate         DateTime?
+  totalArrears     Int?
+  accNum           Int?
+  panNum           String?
+  totalDeduction   Int?
+  hra              Float?
+  specialAllowance Float?
+  basic            Float?
+  conveyance       Float?
+  medical          Float?
+  gross            Float?
+  professionalTax  Float?
+  tds              Float?
+  leaveAmount      Float?
+  paidLeave        Int?
+  sickLeave        Int?
+  unPaidLeave      Int?
+  totalLeave       Int?
+  attendance       Int?
+  netPay           Float?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @default(now()) @updatedAt
+  deletedAt        DateTime?
+}
+model document {
+ id                  Int            @id @default(autoincrement())
+ type                Document_Type
+ docNumber           String
+ useFor              String
+ path                String?
+ verification        Boolean        @default(false)
+ uploadedBy          users?         @relation(fields: [uploadedById], references: [id])
+ uploadedById        Int
+ employees           employees?     @relation(fields: [employeeId], references: [id])
+ employeeId          Int
+ createdAt           DateTime       @default(now())
+ updatedAt           DateTime       @default(now()) @updatedAt
+ deletedAt           DateTime?
+}
+model course {
+ id                  Int            @id @default(autoincrement())
+ type                Course_Type
+ title               String
+ path                String?
+ verification        Boolean        @default(false)
+ uploadedBy          users?         @relation(fields: [uploadedById], references: [id])
+ uploadedById        Int
+ employees           employees?     @relation(fields: [employeeId], references: [id])
+ employeeId          Int
+ createdAt           DateTime       @default(now())
+ updatedAt           DateTime       @default(now()) @updatedAt
+ deletedAt           DateTime?
+}
+model post_announcement {
+   id               Int             @id @default(autoincrement())
+   message          String
+   companies       companies      @relation(fields: [company_id], references: [id])
+   company_id      Int
+   createdAt       DateTime       @default(now())
+   updatedAt       DateTime       @default(now()) @updatedAt
+   deletedAt       DateTime?
+}
+model company_policy{
+ id                  Int            @id @default(autoincrement())
+ title               String
+ description         String
+ path                String?
+ companies           companies      @relation(fields: [company_id], references: [id])
+ company_id          Int
+ createdAt           DateTime       @default(now())
+ updatedAt           DateTime       @default(now()) @updatedAt
+ deletedAt           DateTime?
+}
+model expense_category{
+ id                  Int            @id @default(autoincrement())
+ category            String
+ companies           companies      @relation(fields: [company_id], references: [id])
+ company_id          Int
+ createdAt           DateTime       @default(now())
+ updatedAt           DateTime       @default(now()) @updatedAt
+ deletedAt           DateTime?
+ expense             expense[]
+}
+model expense{
+ id                  Int              @id @default(autoincrement())
+ expenseDate         DateTime
+ description         String
+ submittedAmount     Float
+ approvedAmount      Float?
+ status              Expense_Status   @default(PENDING)
+ actionDate          DateTime?
+ rejectReason        String?
+ path                String?
+ payoutDate          DateTime?
+ category            expense_category @relation(fields: [categoryId], references: [id])
+ categoryId          Int
+ actionBy            users?           @relation(fields: [actionById], references: [id])
+ actionById          Int?
+ companies           companies        @relation(fields: [company_id], references: [id])
+ company_id          Int
+ createdAt           DateTime         @default(now())
+ updatedAt           DateTime         @default(now()) @updatedAt
+ deletedAt           DateTime?
+}
+model leave_rules{
+  id                                   Int              @id @default(autoincrement())
+  name                                 String?
+  description                          String?
+  maxLeavesAllowedInMonth              Int?
+  continuousLeavesAllowed              Int?
+  leavesAllowedInYear                  Int?
+  negativeLeavesAllowed                Boolean?
+  weekendsBetweenLeave                 Boolean?
+  holidaysBetweenLeave                 Boolean?
+  allowedUnderProbation                Boolean?
+  carryForwardEnabled                  Boolean?
+  companies                            companies        @relation(fields: [company_id], references: [id])
+  company_id                           Int
+  createdAt                            DateTime         @default(now())
+  updatedAt                            DateTime         @default(now()) @updatedAt
+  deletedAt                            DateTime?
+  aasignLeaveRule                      aasignLeaveRule[]
+}
+model aasignLeaveRule{
+    id                                   Int              @id @default(autoincrement())
+    leave_rules                          leave_rules      @relation(fields: [leave_rulesId], references: [id])
+    leave_rulesId                        Int
+    employees                            employees        @relation(fields: [employeeId], references: [id])
+    employeeId                           Int
+    createdAt                            DateTime         @default(now())
+    updatedAt                            DateTime         @default(now()) @updatedAt
+    deletedAt                            DateTime?
+}
+model employeeManager{
+ id                  Int              @id @default(autoincrement())
+ employees           employees        @relation("employeeData", fields: [employeeId], references: [id])
+ employeeId          Int
+ managerBy           employees?       @relation("managerData", fields: [managerId], references: [id])
+ managerId           Int
+ companies           companies        @relation(fields: [company_id], references: [id])
+ company_id          Int
+ createdAt           DateTime         @default(now())
+ updatedAt           DateTime         @default(now()) @updatedAt
+ deletedAt           DateTime?
+}
+model attendanceRules{
+ id                     Int                @id @default(autoincrement())
+ employees              employees           @relation(fields: [employee_id], references: [id])
+ employee_id            Int
+ attendance             attendance           @relation(fields: [attendance_id], references: [id])
+ attendance_id          Int
+ companies              companies      @relation(fields: [company_id], references: [id])
+ company_id             Int
+ createdAt              DateTime         @default(now())
+ updatedAt              DateTime         @default(now()) @updatedAt
+ deletedAt              DateTime?
+}
+model attendance{
+ id                     Int                @id @default(autoincrement())
+ ruleName               String?
+ Description            String?
+ shiftInTime            DateTime?
+ shiftOutTime           DateTime?
+ durationCount          Int?            @default(0)
+ fullDayWorkDuration    Int?
+ halfDayWorkDuration    Int?
+ totalBreakDuration     Int?
+ noOfBreaks             Int?
+ isDefault              Boolean          @default(true)
+ companies              companies        @relation(fields: [company_id], references: [id])
+ company_id             Int
+ attendanceRules        attendanceRules[]
+ createdAt              DateTime         @default(now())
+ updatedAt              DateTime         @default(now()) @updatedAt
+ deletedAt              DateTime?
+}
+enum Role {
+  CEO
+  EMPLOYEE
+  HR_ADMIN
+  FINANCE_ADMIN
+  HR_EXECUTIVE
+  SUPER_ADMIN
+}
+enum Invoice_Status {
+  DRAFT
+  POSTED
+  PAID
+}
+enum Status {
+  OPEN
+  ACCEPTED
+  CLOSED
+}
+enum Leave_Type {
+  SICK_LEAVE
+  PAID_LEAVE
+  UN_PAID_LEAVE
+}
+enum Leave_Status {
+  APPLIED
+  APPROVED
+  REJECT
+  CANCELLED
+}
+enum Emp_Type {
+  INTERN
+  ON_PROBATION
+  PERMANENT
+}
+enum Document_Type{
+    PANCARD
+    AADHARCARD
+    VOTERID
+    DRIVINGLICENSE
+    PASSPORT
+    ELECTRICITYBILL
+    RENTAGREEMENT
+    BANKPASSBOOK
+}
+enum Course_Type{
+    GRADUATION
+    POSTGRADUATION
+    DIPLOMA
+    OTHER
+}
+enum Account_Type{
+    SAVING_ACCOUNT
+    CURRENT_ACCOUNT
+}
+enum Expense_Status{
+    PENDING
+    APPROVED
+    REJECTED
+    PAID
+}
